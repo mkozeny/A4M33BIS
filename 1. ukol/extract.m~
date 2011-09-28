@@ -1,0 +1,29 @@
+function [message] = extract(image_name,key)
+    image = imread(image_name,'png');
+    parameters = size(image);
+    rand('seed',key);
+    height = randi(parameters(1),1,parameters(1));
+    width = randi(parameters(2),1,parameters(2));
+    message_length = 0;
+    message = [];
+    fprintf('---LENGTH DECODING---\n');
+    for j=1:16,
+        fprintf('---POSITION: %i, BIT VALUE: %i---\n',j,image(height(j),width(j),1));
+        if (mod(image(height(j),width(j),1),2)==1)
+            fprintf('reading 1 from: %i %i; color: %i\n',height(j),width(j),image(height(j),width(j),1));
+            message_length = message_length + 2^(j-1);
+        else    
+        end
+    end
+     disp(message_length);
+
+    for i=17:(message_length+16),
+        
+        if (mod(image(height(i),width(i),1),2)==1)
+            message(i-16) = 1;
+        elseif (mod(image(height(i),width(i),1),2)==0)
+            message(i-16) = 0;
+        end 
+        
+    end
+    

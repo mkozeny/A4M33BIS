@@ -1,0 +1,14 @@
+embed(String nazev souboru, binary vector Zprava, Number key, Strin output_soubor)
+extract(String soubor, Number key) a vraci message
+EMBED(String IMAGE_NAME,Vector Binary MESSAGE,Int KEY,String OUTPUT_NAME)
+EXTRACT(String IMAGE_NAME,Int KEY)
+return message;
+pevnak@gmail.com
+
+IMWRITE
+IMREAD
+RANDPERM
+(random permutation)
+DEC2BIN
+
+RAND('SEED',KEY)
