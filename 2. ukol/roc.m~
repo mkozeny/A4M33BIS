@@ -1,0 +1,57 @@
+function roc(c,N,P)
+
+% projekce P a N na vektor c
+Y1 = c'*P';
+Y2 = c'*N';
+
+% nalezeni hranic hodnot pro volbu Tresholdu
+%Tmin= min([Y1 Y2]);
+%Tmax=max([Y1 Y2]);
+
+SizeP = size(Y1,2);
+SizeN = size(Y2,2);
+
+%hold on
+%plot(Y1, P,'rx');
+%plot(Y2, N,'bo');
+%hold off
+values = sort([Y1 Y2]);
+%params = size(values);
+%points = params(2);
+Xpoints = [];
+Ypoints = [];
+hold on;
+
+% Velikost prirustku tresholdu
+%increment = 0.0001;
+index = 1;
+for i=values    
+    T = i;
+    CorrectCnt = 0;
+    FalseCnt = 0;
+
+    %for j=1:SizeP
+        % DA - v P matici spravne odhaleno ze je to P
+        if(Y1(j) >= T)
+            CorrectCnt = CorrectCnt + 1;
+        end
+    end
+    
+    %for j=1:SizeN
+        % FP - v N matici spatne odhaleno ze je to P
+     %   if(Y2(j) >= T)
+     %       FalseCnt = FalseCnt + 1;
+     %   end
+    %end    
+    count = size(find(Y2>=T));
+    FalseCnt = count(2);
+    % Vypocet DA a FP a nasledne zaneseni hodnoty do grafu
+    DA = CorrectCnt / (SizeP);
+    FP = FalseCnt / (SizeN);    
+    Xpoints(index) = FP;
+    Ypoints(index) = DA;
+    %plot(FP,DA,'ro-');
+    index = index + 1 ;
+end
+plot(Xpoints,Ypoints,'-');
+hold off

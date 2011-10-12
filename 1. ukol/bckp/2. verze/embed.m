@@ -22,33 +22,6 @@ function embed(image_name,message,key,output_name)
     if(message_length_binary_array>(image_size-max_message_length))
        error('Message is too long\n'); 
     end
-    %
-    matrix = image(:,:,1);
-    img_size = height*width;
-    matrix_colors = reshape(matrix',img_size,1);
-    colors = matrix_colors(positions);
-    message_length_encode = double(dec2bin(message_length_binary_array,max_message_length)-'0');
-    %message_length_encode = bitget(message_length_binary_array,1:max_message_length);
-    message_length_encode
-    result = transpose([message_length_encode transpose(message)]);
-    result
-    colors = colors(1:message_length_binary_array+max_message_length);
-    colors
-    colors_odd_or_even = mod(colors,2);%array of odd even choosed colors
-    colors_odd_or_even
-    message
-    output_vector = xor(result,colors_odd_or_even);
-    output_vector
-    plus_minus_one_vector = transpose(round(rand(1,message_length_binary_array+max_message_length)));
-    plus_minus_one_vector(~plus_minus_one_vector) = -1;
-    plus_minus_one_vector
-    added_values = output_vector.*plus_minus_one_vector;
-    added_values
-    %colors = [transpose(colors) '0'];
-    colors
-    colors = colors+added_values;
-    matrix(positions(1:message_length_binary_array+max_message_length)) = colors;
-    %
     %color_values = 
     fprintf('---LENGTH ENCODING: %i---\n',message_length_binary_array);
     for j=1:max_message_length,

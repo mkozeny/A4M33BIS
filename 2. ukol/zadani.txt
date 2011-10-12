@@ -1,0 +1,7 @@
+FLD(P,N)
+input - matrices resamples
+P = R n1,d
+N = R n2,d
+output vector v
+
+draw ROC(v,P,N)

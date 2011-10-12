@@ -3,7 +3,7 @@ if (nargin<3)
  key = 1;
 end
 if (nargin<2)
- msgLength = 10;
+ msgLength = 10000;
 end
 if (nargin<1)
  image = 'cover.png';
@@ -16,8 +16,7 @@ message=round(rand(msgLength,1));
 
 embed(image,message,key,'stego.png');
 extMessage=extract('stego.png',key);
-%message
-%extMessage
+
 if sum(message~=extMessage)==0
     fprintf('Message correctly extracted\n');
 else
